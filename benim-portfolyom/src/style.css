@@ -1,0 +1,338 @@
+/* Temel Ayarlar */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #0f172a; /* Koyu lacivert arka plan */
+  color: #e2e8f0; /* Açık gri/mavi okunaklı metin */
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.container {
+  width: 90%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+/* Navigasyon (Menü) Tasarımı */
+.navbar {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 3rem;
+  padding: 1rem;
+  background-color: #1e293b; /* Menü kutusu arka planı */
+  border-radius: 12px;
+  border: 1px solid #334155;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.nav-link {
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #ffffff;
+  background-color: #334155;
+}
+
+/* Aktif olan sayfanın menüdeki görünümü */
+.nav-link.active {
+  color: #ffffff;
+  background-color: #3b82f6; 
+}
+
+/* Yazı Tipleri ve Başlıklar */
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: #ffffff;
+}
+
+.text-accent {
+  color: #60a5fa; /* Açık mavi vurgu */
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #cbd5e1;
+  margin-bottom: 1rem;
+}
+
+.page-title {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* Kutu (Card) Tasarımları */
+.cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.card {
+  background-color: #1e293b; /* Kutuların iç rengi */
+  padding: 2rem;
+  border-radius: 16px;
+  border: 1px solid #334155;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+/* İnputlar ve Butonlar */
+.input-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
+
+.input-field {
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid #475569;
+  background-color: #0f172a;
+  color: white;
+  flex: 1;
+  min-width: 0;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: #3b82f6; /* Tıklanınca mavi çerçeve */
+}
+
+.btn {
+  padding: 12px 24px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 8px;
+  border: none;
+  font-weight: bold;
+  transition: all 0.2s;
+}
+
+.btn:active {
+  transform: scale(0.95);
+}
+
+.primary-btn {
+  background-color: #3b82f6; /* Ana mavi buton */
+  color: white;
+}
+
+.primary-btn:hover {
+  background-color: #2563eb; /* Üzerine gelince koyulaşan mavi */
+}
+
+/* Kaydedilen Tarihlerin Listesi */
+.event-list {
+  list-style-type: none;
+  text-align: left;
+}
+
+.event-list li {
+  background-color: #0f172a;
+  margin-top: 10px;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #334155;
+}
+
+/* Sayfa Geçiş Animasyonu */
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Telefonlar İçin Responsive Düzenleme */
+@media (max-width: 600px) {
+  .input-group {
+    flex-direction: column;
+  }
+  .btn {
+    width: 100%;
+  }
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .nav-link {
+    width: 100%;
+    text-align: center;
+  }
+}
+/* --- FİLM KARTLARI TASARIMI --- */
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  margin-top: 2rem;
+}
+
+.movie-card {
+  background-color: #1e293b;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #334155;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.movie-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+.movie-link {
+  text-decoration: none;
+  color: white;
+  flex-grow: 1;
+}
+
+.movie-poster {
+  width: 100%;
+  height: 300px;
+  object-fit: cover; /* Resmi kutuya orantılı sığdırır */
+  border-bottom: 1px solid #334155;
+}
+
+.movie-info {
+  padding: 15px;
+}
+
+.movie-title {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+  color: #60a5fa;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Uzun isimlerin sonuna üç nokta koyar */
+}
+
+.movie-date {
+  font-size: 0.9rem;
+  color: #94a3b8;
+  margin-bottom: 0;
+}
+
+.delete-movie-btn {
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.delete-movie-btn:hover {
+  background-color: #dc2626;
+}
+
+/* --- ALT MENÜ (SEKME) TASARIMI --- */
+.tabs-container {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid #1e293b;
+  padding-bottom: 1rem;
+}
+
+.tab-btn {
+  background-color: transparent;
+  color: #94a3b8;
+  border: none;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 8px;
+  transition: all 0.3s;
+}
+
+.tab-btn:hover {
+  color: #ffffff;
+  background-color: #1e293b;
+}
+
+/* Aktif olan sekmenin tasarımı */
+.tab-btn.active {
+  color: #ffffff;
+  background-color: #3b82f6; 
+}
+
+/* --- HIZLI YAZMA TESTİ RENKLENDİRMELERİ --- */
+.word {
+  color: #64748b; /* Pasif kelime rengi (Gri) */
+  transition: all 0.2s;
+}
+
+.current-word {
+  color: #e2e8f0; /* Şu an yazılan kelime (Beyaz) */
+  background-color: rgba(59, 130, 246, 0.2); /* Hafif mavi arka plan */
+  border-radius: 4px;
+  padding: 0 4px;
+}
+
+.correct {
+  color: #22c55e; /* Doğru yazılan kelime (Yeşil) */
+}
+
+.incorrect {
+  color: #ef4444; /* Yanlış yazılan kelime (Kırmızı) */
+  text-decoration: line-through;
+}
+
+.typing-error {
+  text-decoration: underline;
+  text-decoration-color: #ef4444; /* Harf hatası yapıldığında altı kırmızı çizili */
+}
+
+/* --- INSTAGRAM BUTON TASARIMI --- */
+.instagram-btn {
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  color: white !important;
+  text-decoration: none;
+  font-weight: bold;
+  box-shadow: 0 4px 14px rgba(204, 35, 102, 0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.instagram-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(204, 35, 102, 0.6);
+}
