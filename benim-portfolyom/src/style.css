@@ -25,10 +25,11 @@ body {
 .navbar {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  flex-wrap: wrap; /* YENİ: Ekrana sığmazsa alt satıra atar */
+  gap: 10px; /* DEĞİŞTİ: 20px'ten 10px'e düştü */
   margin-bottom: 3rem;
   padding: 1rem;
-  background-color: #1e293b; /* Menü kutusu arka planı */
+  background-color: #1e293b; 
   border-radius: 12px;
   border: 1px solid #334155;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
@@ -37,9 +38,9 @@ body {
 .nav-link {
   color: #94a3b8;
   text-decoration: none;
-  font-size: 1.1rem;
+  font-size: 1rem; /* DEĞİŞTİ: 1.1rem'den 1rem'e düştü */
   font-weight: bold;
-  padding: 10px 20px;
+  padding: 8px 15px; /* DEĞİŞTİ: Sağ/sol boşluğu daraltıldı */
   border-radius: 8px;
   transition: all 0.3s ease;
 }
@@ -335,4 +336,78 @@ p {
 .instagram-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(204, 35, 102, 0.6);
+}
+/* Forum Alanı Genel Kapsayıcı */
+.forum-kapsayici {
+  background-color: rgba(255, 255, 255, 0.05); /* Sitenin arka planına uygun hafif saydam bir kutu */
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 600px;
+  margin: 0 auto;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Form Grupları Arası Boşluk */
+.form-grup {
+  margin-bottom: 20px;
+}
+
+/* Etiketler (Labels) */
+.form-grup label {
+  display: block;
+  color: #cbd5e1; /* Açık gri/mavi yazı rengi */
+  font-size: 14px;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+/* Input ve Textarea Ayarları */
+.form-grup input, 
+.form-grup textarea {
+  width: 100%;
+  padding: 12px;
+  background-color: #0f172a; /* Sitenin arka planına çok yakın koyu renk */
+  border: 1px solid #334155;
+  border-radius: 8px;
+  color: #f8fafc; /* Beyaz yazı rengi */
+  font-family: inherit;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+/* Inputlara Tıklanınca (Focus) Oluşan Efekt */
+.form-grup input:focus, 
+.form-grup textarea:focus {
+  border-color: #3b82f6; /* Görseldeki "Anasayfa" butonunun mavisi */
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+/* Gönder Butonu */
+.forum-buton {
+  background-color: #3b82f6; /* Görseldeki mavi buton rengi */
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  width: 100%;
+  transition: background-color 0.3s, transform 0.1s;
+}
+
+.forum-buton:hover {
+  background-color: #2563eb; /* Üzerine gelince biraz daha koyu mavi */
+}
+
+.forum-buton:active {
+  transform: scale(0.98); /* Tıklayınca hafif küçülme efekti */
+}
+
+/* Sonuç Mesajı */
+#sonucMesaji {
+  margin-top: 15px;
+  font-weight: bold;
+  text-align: center;
 }

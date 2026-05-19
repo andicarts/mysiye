@@ -3,14 +3,17 @@ import { setupCounter } from './counter.js'
 import { setupDateTracker } from './dateCounter.js'
 import { setupMovieTracker } from './movieTracker.js'
 import { setupTypingTest } from './typingTest.js'
-import { setupSnakeGame } from './snakeGame.js' // YENİ
+import { setupSnakeGame } from './snakeGame.js' 
+import { setupUcanKacanGame } from './ucanKacanGame.js'
 
 import { anasayfaHTML } from './anasayfa.js'
 import { sayaclarHTML } from './sayaclar.js'
 import { filmlerHTML } from './filmler.js'
 import { hizliyazmaHTML } from './hizliyazma.js'
-import { oyunlarHTML } from './oyunlar.js' // YENİ
-import { setupUcanKacanGame } from './ucanKacanGame.js'
+import { oyunlarHTML } from './oyunlar.js' 
+// YENİ FORUM İÇE AKTARIMI
+import { forumHTML, setupForum } from './forum.js' 
+
 document.querySelector('#app').innerHTML = `
   <div class="container">
     <nav class="navbar">
@@ -19,6 +22,7 @@ document.querySelector('#app').innerHTML = `
       <a href="#filmler" class="nav-link">Film Kütüphanem</a>
       <a href="#hizliyazma" class="nav-link">Hızlı Yazma Testi</a>
       <a href="#oyunlar" class="nav-link">Oyunlar</a>
+      <a href="#forum" class="nav-link">Forum</a> 
     </nav>
     <div id="page-content"></div>
   </div>
@@ -31,7 +35,8 @@ const pages = {
   sayaclar: sayaclarHTML,
   filmler: filmlerHTML,
   hizliyazma: hizliyazmaHTML,
-  oyunlar: oyunlarHTML // YENİ
+  oyunlar: oyunlarHTML,
+  forum: forumHTML // YENİ FORUM EKLENTİSİ
 };
 
 function renderPage() {
@@ -40,7 +45,7 @@ function renderPage() {
   if (pages[hash]) {
     pageContent.innerHTML = pages[hash];
   } else {
-    pageContent.innerHTML = '<h1 style="text-align:center;">404 - Sayfa Bulunamadı</h1>';
+    pageContent.innerHTML = '<h1 style="text-align:center; color:white;">404 - Sayfa Bulunamadı</h1>';
   }
 
   // Sayfalara göre ilgili JavaScript tetikleyicileri
@@ -54,33 +59,33 @@ function renderPage() {
   if (hash === 'hizliyazma') {
     setupTypingTest();
   }
-if (hash === 'oyunlar') {
-  // Oyunları sisteme kur
-  setupSnakeGame();
-  setupUcanKacanGame();
+  if (hash === 'oyunlar') {
+    setupSnakeGame();
+    setupUcanKacanGame();
 
-  // --- Sekme (Tab) Değiştirme Mantığı ---
-  const tabSnake = document.getElementById('tab-snake');
-  const tabUk = document.getElementById('tab-ucankacan');
-  const secSnake = document.getElementById('snake-section');
-  const secUk = document.getElementById('ucankacan-section');
+    const tabSnake = document.getElementById('tab-snake');
+    const tabUk = document.getElementById('tab-ucankacan');
+    const secSnake = document.getElementById('snake-section');
+    const secUk = document.getElementById('ucankacan-section');
 
-  // Yılan sekmesine tıklandığında
-  tabSnake.onclick = () => {
-    tabSnake.classList.add('active'); 
-    tabUk.classList.remove('active');
-    secSnake.style.display = 'block'; 
-    secUk.style.display = 'none';
-  };
+    tabSnake.onclick = () => {
+      tabSnake.classList.add('active'); 
+      tabUk.classList.remove('active');
+      secSnake.style.display = 'block'; 
+      secUk.style.display = 'none';
+    };
 
-  // Uçan Kaçan sekmesine tıklandığında
-  tabUk.onclick = () => {
-    tabUk.classList.add('active'); 
-    tabSnake.classList.remove('active');
-    secUk.style.display = 'block'; 
-    secSnake.style.display = 'none';
-  };
-}
+    tabUk.onclick = () => {
+      tabUk.classList.add('active'); 
+      tabSnake.classList.remove('active');
+      secUk.style.display = 'block'; 
+      secSnake.style.display = 'none';
+    };
+  }
+  // YENİ FORUM TETİKLEYİCİSİ
+  if (hash === 'forum') {
+    setupForum(); // Olay dinleyicisi sadece sayfa ekrana basıldıktan sonra çalışır!
+  }
 
   // Aktif menüyü vurgula
   document.querySelectorAll('.nav-link').forEach(link => {
