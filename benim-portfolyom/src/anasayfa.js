@@ -19,5 +19,11 @@ export const anasayfaHTML = `
         </a>
       </div>
     </div>
+    <!-- QR Kod Konteyneri -->
+<div class="qr-kodu-alani">
+    <p>Web Sitemi Başkasıyla paylaşabilirsiniz</p>
+    <!-- Görselin yolunu (src) kendi dosyana göre güncelle -->
+    <img src="/sitem_qr.png" alt="Web Sitemin QR Kodu">
+</div>
   </div>
 `;

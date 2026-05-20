@@ -52,6 +52,7 @@ export function setupUcanKacanGame() {
     animationId = requestAnimationFrame(updateGame);
   }
 
+  // KLAVYE İLE ZIPLAMA KONTROLÜ
   function jump(e) {
     if (!gameRunning) return;
     // Boşluk veya Yukarı yön tuşuna basıldığında
@@ -176,6 +177,21 @@ export function setupUcanKacanGame() {
     ctx.font = '20px sans-serif';
     ctx.fillText(`Skorunuz: ${score}`, canvas.width / 2, canvas.height / 2 + 20);
   }
+
+  // --- MOBİL DOKUNMATİK (TAP) KONTROLLERİ ---
+  canvas.addEventListener('touchstart', function(e) {
+    if (!gameRunning) return;
+    
+    // Ekrana dokunulduğunda sayfanın kaymasını veya yakınlaşmasını engelle
+    e.preventDefault(); 
+    
+    // Eğer Serdar yerdeyse zıpla
+    if (serdar.grounded) {
+      serdar.dy = serdar.jumpPower;
+      serdar.grounded = false;
+    }
+  }, { passive: false });
+  // ------------------------------------------
 
   // Olayları (Event) Bağlama
   window.removeEventListener('keydown', jump); // Çift tetiklenmeyi önle

@@ -411,3 +411,50 @@ p {
   font-weight: bold;
   text-align: center;
 }
+.qr-kodu-alani {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto; 
+    padding: 25px;
+    /* İletişim kutusuna benzeyen koyu lacivert/gri arkaplan */
+    background-color: #1e2433; 
+    border-radius: 16px;
+    /* Kutuyu biraz daha belirgin yapmak için çok hafif bir dış çizgi ve gölge */
+    border: 1px solid rgba(255, 255, 255, 0.05); 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    width: fit-content;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.qr-kodu-alani:hover {
+    /* Üzerine gelince sadece büyümekle kalmaz, hafifçe yukarı kalkar */
+    transform: translateY(-5px); 
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+}
+
+.qr-kodu-alani p {
+    margin: 0 0 15px 0;
+    font-size: 15px;
+    font-family: inherit; /* Sitenin kendi fontunu otomatik alır */
+    font-weight: 500;
+    color: #ffffff; /* Yazıyı beyaza çevirdik */
+    letter-spacing: 0.5px;
+}
+
+.qr-kodu-alani img {
+    width: 140px;  
+    height: 140px;
+    object-fit: contain;
+    border-radius: 8px; /* Sert köşeleri biraz yumuşattık */
+    /* Kameraların karanlık temada QR kodu okuyabilmesi için zorunlu beyaz alan */
+    background-color: #ffffff; 
+    padding: 10px; /* QR kod ile beyaz sınır arasına nefes payı */
+}
+#snakeCanvas {
+    touch-action: none;
+}
+#ukCanvas {
+    touch-action: none;
+}

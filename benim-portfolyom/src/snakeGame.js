@@ -140,6 +140,51 @@ export function setupSnakeGame() {
     }
   }
 
+  // --- MOBİL DOKUNMATİK (SWIPE) KONTROLLERİ ---
+  let touchStartX = 0;
+  let touchStartY = 0;
+
+  // Parmağın ekrana ilk dokunduğu an
+  canvas.addEventListener('touchstart', function(e) {
+    touchStartX = e.changedTouches[0].screenX;
+    touchStartY = e.changedTouches[0].screenY;
+  }, { passive: false });
+
+  // Mobil cihazda oyun oynanırken ekranın kaymasını engelle
+  canvas.addEventListener('touchmove', function(e) {
+    if (gameRunning) {
+      e.preventDefault();
+    }
+  }, { passive: false });
+
+  // Parmağın ekrandan kalktığı an
+  canvas.addEventListener('touchend', function(e) {
+    if (!gameRunning) return;
+    let touchEndX = e.changedTouches[0].screenX;
+    let touchEndY = e.changedTouches[0].screenY;
+    
+    handleSwipe(touchStartX, touchStartY, touchEndX, touchEndY);
+  }, { passive: false });
+
+  function handleSwipe(startX, startY, endX, endY) {
+    let xDiff = endX - startX;
+    let yDiff = endY - startY;
+
+    // Çok küçük dokunmaları kaydırma olarak algılamaması için sınır (threshold)
+    if (Math.abs(xDiff) < 30 && Math.abs(yDiff) < 30) return;
+
+    if (Math.abs(xDiff) > Math.abs(yDiff)) {
+      // Yatay Düzlem (Sağ / Sol)
+      if (xDiff > 0 && dx !== -1) { dx = 1; dy = 0; } // Sağa kaydırma
+      else if (xDiff < 0 && dx !== 1) { dx = -1; dy = 0; } // Sola kaydırma
+    } else {
+      // Dikey Düzlem (Yukarı / Aşağı)
+      if (yDiff > 0 && dy !== -1) { dx = 0; dy = 1; } // Aşağı kaydırma
+      else if (yDiff < 0 && dy !== 1) { dx = 0; dy = -1; } // Yukarı kaydırma
+    }
+  }
+  // --------------------------------------------
+
   // Olay dinleyicilerini bağla (Çift tetiklemeyi önlemek için önce temizliyoruz)
   window.removeEventListener('keydown', handleKeyDown);
   window.addEventListener('keydown', handleKeyDown);
